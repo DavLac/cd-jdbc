@@ -5,9 +5,10 @@ import courses.dev.java.jdbc.solution.model.User;
 import java.util.List;
 
 public interface UserRepository {
-    User getUserById();
+    User getUserById(Integer id);
     List<User> getAllUsers();
-    User createUser(User user);
-    User updateUserById(User user);
+    Integer createUser(User user);
+    void updateUserById(Integer id, User user);
     void deleteUserById(Integer id);
+    void deleteAllUsers();
 }
