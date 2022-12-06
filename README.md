@@ -18,12 +18,14 @@
 ## Assignment 2 - CRUD
 
 - Implement the full `User` CRUD
+- Bonus : read database configuration from a property file
 
 ## Assignment 3 - transactions
 
-- Create 5 users
-- During the creation of the 4th user, an "unexpected" exception will occur
-- Find a solution to rollback the first created users
+- Create multiple users
+- Add +1 to their age in one transaction
+- Constraint : make 1 update request by user
+- If any error occurs during the update, rollback changes
 
 ## Assignment 4 - Products and Baskets
 
