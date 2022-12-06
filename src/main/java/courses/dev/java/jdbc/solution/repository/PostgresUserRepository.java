@@ -1,6 +1,7 @@
 package courses.dev.java.jdbc.solution.repository;
 
 
+import courses.dev.java.jdbc.solution.config.AppConfig;
 import courses.dev.java.jdbc.solution.model.User;
 
 import java.sql.*;
@@ -9,9 +10,9 @@ import java.util.List;
 
 public class PostgresUserRepository implements UserRepository {
 
-    public static final String JDBC_CONNECTION_DEMO = "jdbc:postgresql://localhost:5432/demo";
-    public static final String DB_USER = "postgres";
-    public static final String DB_PASSWORD = "password";
+    public static final String JDBC_CONNECTION_DEMO = AppConfig.load().getProperty("db.postgres.url");
+    public static final String DB_USER = AppConfig.load().getProperty("db.postgres.user");
+    public static final String DB_PASSWORD = AppConfig.load().getProperty("db.postgres.password");
 
     @Override
     public User getUserById(Integer id) {
@@ -119,10 +120,78 @@ public class PostgresUserRepository implements UserRepository {
         try (Connection con = DriverManager
                 .getConnection(JDBC_CONNECTION_DEMO, DB_USER, DB_PASSWORD)) {
             String sql = "DELETE FROM users";
-            try (PreparedStatement pstmt = con.prepareStatement(sql)) {
-                pstmt.executeUpdate();
+            try (Statement stmt = con.createStatement()) {
+                stmt.executeUpdate(sql);
             }
 
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void allUsersGetOlderOnError() {
+        List<User> users = getAllUsers();
+        try (Connection con = DriverManager
+                .getConnection(JDBC_CONNECTION_DEMO, DB_USER, DB_PASSWORD)) {
+
+            String insertUserSql = "UPDATE users SET age=age+1 WHERE id=?";
+
+            boolean autoCommit = con.getAutoCommit();
+            try {
+                con.setAutoCommit(false);
+
+                PreparedStatement pstmt1 = con.prepareStatement(insertUserSql);
+                pstmt1.setInt(1, users.get(0).getId());
+                PreparedStatement pstmt2 = con.prepareStatement(insertUserSql);
+                pstmt2.setInt(1, users.get(1).getId());
+
+                System.out.println("Updating user " + users.get(0).getName());
+                pstmt1.executeUpdate();
+                System.out.println("Updating user " + users.get(1).getName());
+                pstmt2.executeUpdate();
+                throw new RuntimeException("Unexpected error"); // throw an expected error
+                // con.commit();
+            } catch (Exception exc) {
+                System.out.println("Unexpected error -> rollback");
+                con.rollback();
+            } finally {
+                con.setAutoCommit(autoCommit);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void allUsersGetOlder() {
+        List<User> users = getAllUsers();
+        try (Connection con = DriverManager
+                .getConnection(JDBC_CONNECTION_DEMO, DB_USER, DB_PASSWORD)) {
+
+            String insertUserSql = "UPDATE users SET age=age+1 WHERE id=?";
+
+            boolean autoCommit = con.getAutoCommit();
+            try {
+                con.setAutoCommit(false);
+
+                PreparedStatement pstmt1 = con.prepareStatement(insertUserSql);
+                pstmt1.setInt(1, users.get(0).getId());
+                PreparedStatement pstmt2 = con.prepareStatement(insertUserSql);
+                pstmt2.setInt(1, users.get(1).getId());
+                PreparedStatement pstmt3 = con.prepareStatement(insertUserSql);
+                pstmt3.setInt(1, users.get(2).getId());
+
+                pstmt1.executeUpdate();
+                pstmt2.executeUpdate();
+                pstmt3.executeUpdate();
+                con.commit();
+            } catch (Exception exc) {
+                System.out.println("Unexpected error -> rollback");
+                con.rollback();
+            } finally {
+                con.setAutoCommit(autoCommit);
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

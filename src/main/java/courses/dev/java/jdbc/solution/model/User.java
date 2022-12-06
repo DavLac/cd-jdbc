@@ -1,12 +1,17 @@
 package courses.dev.java.jdbc.solution.model;
 
 public class User {
-    private final Integer id;
+    private Integer id;
     private final String name;
     private final Integer age;
 
     public User(Integer id, String name, Integer age) {
         this.id = id;
+        this.name = name;
+        this.age = age;
+    }
+
+    public User(String name, Integer age) {
         this.name = name;
         this.age = age;
     }

@@ -11,4 +11,6 @@ public interface UserRepository {
     void updateUserById(Integer id, User user);
     void deleteUserById(Integer id);
     void deleteAllUsers();
+    void allUsersGetOlderOnError();
+    void allUsersGetOlder();
 }
