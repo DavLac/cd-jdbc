@@ -1,6 +1,8 @@
 package courses.dev.java.jdbc.assignments;
 
+import java.util.List;
+
 public interface UserRepository {
-    void getUserById();
-    //hello world
+    User getUserById(int id);
+    List<User> getAllUsers();
 }
