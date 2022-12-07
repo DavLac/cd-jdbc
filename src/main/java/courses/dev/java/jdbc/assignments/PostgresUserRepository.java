@@ -70,7 +70,7 @@ public class PostgresUserRepository implements UserRepository {
                 pstmt.executeUpdate();
                 try (ResultSet rs = pstmt.getGeneratedKeys()) {
                     if (rs.next()) {
-                        return getUserById(rs.getInt("user_id")).orElse(null);
+                        return getUserById(rs.getInt("user_id")).orElseThrow();
                         //new User (rs.getString("name"),rs.getInt("age")....
                     } else {
                         throw new IllegalArgumentException("This id could not be found");
@@ -94,7 +94,7 @@ public class PostgresUserRepository implements UserRepository {
                 pstmt.executeUpdate();
                 try (ResultSet rs = pstmt.getGeneratedKeys()) {
                     if (rs.next()) {
-                        return getUserById(id).orElse(null);
+                        return getUserById(id).orElseThrow();
                         //new User (rs.getString("name"),rs.getInt("age")....
                     } else {
                         throw new IllegalArgumentException("This id could not be found");

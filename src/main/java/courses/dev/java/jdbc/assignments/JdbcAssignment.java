@@ -23,30 +23,30 @@ public class JdbcAssignment {
             get all the users
          */
         PostgresUserRepository repository = new PostgresUserRepository();
-        User user = repository.getUserById(9).orElse(null);
+
+        User user = repository.getUserById(9).orElseThrow();
         System.out.println(user.getName());
 
         printUsers(repository);
 
-        User userToCreate = new User("Sacha",27,0);
+        User userToCreate = new User("Sacha",27);
         System.out.println(repository.createUser(userToCreate));
 
         printUsers(repository);
 
-        User userUpdate = new User("Igrid",30,0);
+        User userUpdate = new User("Igrid",30);
         System.out.println(repository.updateUserById(1,userUpdate));
 
         printUsers(repository);
 
-        repository.deleteUserById(16);
+        List<User> users = repository.getAllUsers();
+        repository.deleteUserById(users.get(0).getId());
 
         printUsers(repository);
     }
 
     public static void printUsers(PostgresUserRepository repository){
         List<User> users = repository.getAllUsers();
-        for (User user1 : users) {
-            System.out.println(user1);
-        }
+        users.forEach((System.out::println));
     }
 }
