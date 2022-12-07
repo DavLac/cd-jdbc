@@ -2,7 +2,7 @@ package courses.dev.java.jdbc.assignments;
 
 public class JdbcAssignment {
 
-
+    // something
     public static void main(String[] args) {
         UserRepository repo = new PostgressUserRepository();
         System.out.println("Creating users:");
