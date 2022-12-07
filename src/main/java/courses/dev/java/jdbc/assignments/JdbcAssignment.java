@@ -3,6 +3,9 @@ package courses.dev.java.jdbc.assignments;
 import java.util.List;
 
 public class JdbcAssignment {
+
+    // something
+
     private static final String JDBC_CONNECTION_DEMO = "jdbc:postgresql://localhost:5432/jdbctraining";
     private static final String DB_USER = "postgres";
     private static final String DB_PASSWORD = "password";
