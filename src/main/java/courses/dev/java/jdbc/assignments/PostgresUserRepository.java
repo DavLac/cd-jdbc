@@ -90,7 +90,7 @@ public class PostgresUserRepository implements UserRepository {
             try (PreparedStatement pstmt = con.prepareStatement(insertUserSql, Statement.RETURN_GENERATED_KEYS)) {
                 pstmt.setString(1, user.getName());
                 pstmt.setInt(2, user.getAge());
-                pstmt.setInt(3,id);
+                pstmt.setInt(3, id);
                 pstmt.executeUpdate();
                 try (ResultSet rs = pstmt.getGeneratedKeys()) {
                     if (rs.next()) {
@@ -112,7 +112,7 @@ public class PostgresUserRepository implements UserRepository {
         try (Connection con = DriverManager.getConnection(JDBC_CONNECTION_DEMO, DB_USER, DB_PASSWORD)) {
             String insertUserSql = "DELETE FROM users WHERE user_id = ?";
             try (PreparedStatement pstmt = con.prepareStatement(insertUserSql, Statement.RETURN_GENERATED_KEYS)) {
-                pstmt.setInt(1,id);
+                pstmt.setInt(1, id);
                 pstmt.executeUpdate();
             }
         } catch (SQLException e) {

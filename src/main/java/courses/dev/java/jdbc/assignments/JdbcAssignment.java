@@ -1,9 +1,6 @@
 package courses.dev.java.jdbc.assignments;
 
-import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class JdbcAssignment {
     private static final String JDBC_CONNECTION_DEMO = "jdbc:postgresql://localhost:5432/jdbctraining";
@@ -29,13 +26,13 @@ public class JdbcAssignment {
 
         printUsers(repository);
 
-        User userToCreate = new User("Sacha",27);
+        User userToCreate = new User("Sacha", 27);
         System.out.println(repository.createUser(userToCreate));
 
         printUsers(repository);
 
-        User userUpdate = new User("Igrid",30);
-        System.out.println(repository.updateUserById(1,userUpdate));
+        User userUpdate = new User("Igrid", 30);
+        System.out.println(repository.updateUserById(1, userUpdate));
 
         printUsers(repository);
 
@@ -45,7 +42,7 @@ public class JdbcAssignment {
         printUsers(repository);
     }
 
-    public static void printUsers(PostgresUserRepository repository){
+    public static void printUsers(PostgresUserRepository repository) {
         List<User> users = repository.getAllUsers();
         users.forEach((System.out::println));
     }
