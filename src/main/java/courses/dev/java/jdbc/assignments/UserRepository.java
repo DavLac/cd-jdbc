@@ -1,10 +1,10 @@
 package courses.dev.java.jdbc.assignments;
 
 import java.util.List;
-import java.util.SplittableRandom;
+import java.util.Optional;
 
 public interface UserRepository {
-    User getUserById(int id);
+    Optional<User> getUserById(int id) throws Exception;
     List<User> getAllUsers(); //should take page number and page size
     User createUser(User user);
     User updateUserById(int id, User user);

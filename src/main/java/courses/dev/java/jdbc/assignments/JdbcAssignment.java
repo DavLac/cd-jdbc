@@ -1,9 +1,5 @@
 package courses.dev.java.jdbc.assignments;
 
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-
 public class JdbcAssignment {
 
 
@@ -11,18 +7,20 @@ public class JdbcAssignment {
         UserRepository repo = new PostgressUserRepository();
         System.out.println("Creating users:");
         for (int i = 0; i < 5; i++) {
-            repo.createUser(new User(i,"bob"+i,i));
+            repo.createUser(new User(i, "bob" + i, i));
         }
         repo.getAllUsers().forEach(System.out::println);
         System.out.println("\n editing one:");
         User toUpdate = repo.getAllUsers().get(3);
-        repo.updateUserById(toUpdate.getId(),new User(200,"Alice",34));
+
+
+        repo.updateUserById(toUpdate.getId(), new User("Alice", 34));
         repo.getAllUsers().forEach(System.out::println);
         System.out.println("\n deleting all");
-        for (User user:
+        for (User user :
                 repo.getAllUsers()) {
             repo.deleteUserById(user.getId());
-            }
+        }
         repo.getAllUsers().forEach(System.out::println);
         System.out.println("all deleted");
     }
