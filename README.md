@@ -33,3 +33,5 @@
 - Each product has a `name` and a `price`
 - Users can add products in their basket and get the total sum of all products
 - Constraint: if a new table creation is needed, please create a new database with `H2 in-memory database` and create the new tables inside
+
+something
