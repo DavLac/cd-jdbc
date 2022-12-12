@@ -4,7 +4,7 @@
 - Install `Postgres` locally
 - Be able to request the database (create database, tables...)
 
-## Assignment 1 - connectivity and fetching data
+## Assignment 1 - Connectivity and fetching data
 
 - Create a database `demo`
 - Create a table `Users`
@@ -20,14 +20,14 @@
 - Implement the full `User` CRUD
 - Bonus : read database configuration from a property file
 
-## Assignment 3 - transactions
+## Assignment 3 - Transactions
 
 - Create multiple users
 - Add +1 to their age in one transaction
 - Constraint : make 1 update request by user
 - If any error occurs during the update, rollback changes
 
-## Assignment 4 - Products and Baskets
+## Assignment 4 - Bonus - Products and Baskets
 
 - `Users` should be able to add `Products` in a `Basket`
 - Each product has a `name` and a `price`
