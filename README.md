@@ -4,6 +4,15 @@
 - Install `Postgres` locally
 - Be able to request the database (create database, tables...)
 
+## PSQL commands
+- connect to PSQL: `psql -u postgres`
+- list DBs: `\list`
+- create database: `CREATE DATABASE demo;`
+- connect DB demo: `\c demo`
+- list tables: `\dt`
+- create tables with auto increment: `CREATE TABLE users (id SERIAL PRIMARY KEY, name VARCHAR, age INTEGER);`
+- insert with auto increment: `INSERT INTO users VALUES (DEFAULT, 'bob', 25);`
+
 ## Assignment 1 - Connectivity and fetching data
 
 - Create a database `demo`
