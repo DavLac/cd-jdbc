@@ -1,5 +1,7 @@
 # JDBC training
 
+Hello I'm a hacker, and I'm adding a line here
+
 ## Prerequisites
 - Install `Postgres` locally
 - Be able to request the database (create database, tables...)
