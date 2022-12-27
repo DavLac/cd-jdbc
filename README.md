@@ -1,8 +1,8 @@
 # JDBC training
 
-Hello I'm a hacker, and I'm adding a line here
+Hello I'm a pokemon, and I'm adding a pokeball here
 
-Hello I'm an annoying colleague, I'm modifying this just because I'm very bad
+Hello I'm an annoying pokemon trainer, I'm modifying this just because I'm very happy
 
 ## Prerequisites
 - Install `Postgres` locally
