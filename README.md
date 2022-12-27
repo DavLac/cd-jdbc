@@ -2,6 +2,8 @@
 
 Hello I'm a hacker, and I'm adding a line here
 
+Hello I'm an annoying colleague, I'm modifying this just because I'm very bad
+
 ## Prerequisites
 - Install `Postgres` locally
 - Be able to request the database (create database, tables...)
