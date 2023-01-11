@@ -1,11 +1,11 @@
 package courses.dev.java.jdbc.solution.model;
 
 public class User {
-    private Integer id;
+    private Long id;
     private final String name;
     private final Integer age;
 
-    public User(Integer id, String name, Integer age) {
+    public User(Long id, String name, Integer age) {
         this.id = id;
         this.name = name;
         this.age = age;
@@ -16,8 +16,12 @@ public class User {
         this.age = age;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {

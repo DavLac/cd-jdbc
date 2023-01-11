@@ -10,26 +10,31 @@ public class JdbcAssignment {
 
         System.out.println("###### User CRUD ######");
         System.out.println("### Create users");
-        Integer savedId = userRepository.createUser(new User("bobby", 25));
-        System.out.println(userRepository.getUserById(savedId));
-        System.out.println(userRepository.getUserById(userRepository.createUser(new User("john", 12))));
+        User savedUser = userRepository.createUser(new User("bobby", 25));
+        System.out.println(userRepository.getUserById(savedUser.getId())
+                .orElseThrow(() -> new RuntimeException("User not found")));
+        System.out.println(userRepository.getUserById(userRepository.createUser(new User("john", 12)).getId())
+                .orElseThrow(() -> new RuntimeException("User not found")));
 
         System.out.println("\n### Get all users");
         userRepository.getAllUsers().forEach(System.out::println);
-        userRepository.updateUserById(savedId, new User("paul", 29));
-        System.out.println("\n### Update user by id=" + savedId);
+        userRepository.updateUserById(savedUser.getId(), new User("paul", 29));
+        System.out.println("\n### Update user by id=" + savedUser.getId());
 
-        System.out.println(userRepository.getUserById(savedId));
+        System.out.println(userRepository.getUserById(savedUser.getId())
+                .orElseThrow(() -> new RuntimeException("User not found")));
 
-        System.out.println("\n### Get user by id=" + savedId);
-        System.out.println(userRepository.getUserById(savedId));
+        System.out.println("\n### Get user by id=" + savedUser.getId());
+        System.out.println(userRepository.getUserById(savedUser.getId())
+                .orElseThrow(() -> new RuntimeException("User not found")));
 
-        System.out.println("\n### Delete user by id=" + savedId);
-        userRepository.deleteUserById(savedId);
+        System.out.println("\n### Delete user by id=" + savedUser.getId());
+        userRepository.deleteUserById(savedUser.getId());
         System.out.println(true);
 
         System.out.println("\n### Create user");
-        System.out.println(userRepository.getUserById(userRepository.createUser(new User("martin", 42))));
+        System.out.println(userRepository.getUserById(userRepository.createUser(new User("martin", 42)).getId())
+                .orElseThrow(() -> new RuntimeException("User not found")));
         System.out.println("### Delete all users");
         userRepository.deleteAllUsers();
         System.out.println(true);
