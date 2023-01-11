@@ -1,5 +1,5 @@
 # JDBC training
-
+little change
 ## Prerequisites
 - Install `Postgres` locally
 - Be able to request the database (create database, tables...)
